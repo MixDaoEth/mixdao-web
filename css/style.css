@@ -95,7 +95,8 @@ nav a{
 
 .team-list{
     display: flex;
-    overflow-x: auto;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .team-member img{
@@ -111,9 +112,8 @@ nav a{
     padding:0.5em 1em;
     background-color: white;
     border-radius: 1em;
-    min-width: 250px;
+    max-width: 250px;
     margin: 1em;
-    flex-basis: min-content;
     margin-top: 4em;
     box-shadow: -1px 10px 0px #3F1050, -4px 0px 0px #3F1050, 4px 5px 0px #3F1050, 0px -4px 0px #3F1050;
     text-align: center;
