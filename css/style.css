@@ -247,11 +247,7 @@ img.hero-bg {
     margin: 4em auto 0;
     padding:0.5em 1em;
     background: #F8FFFF;
-
-    /* Orchid/08 */
     border: 4px solid #3F1050;
-
-    /* Dropshadow */
     box-shadow: -1px 5px 0px #3F1050, -1px 0px 0px #3F1050, 0px 5px 0px #3F1050;
     border-radius: 24px;
 }
@@ -482,6 +478,9 @@ footer *:nth-child(2) {
 /* footer no bg on mint page */
 .purple footer {
     background: none;
+    position: fixed;
+    bottom:0;
+    width: 100%;
 }
 
 footer a {
@@ -510,6 +509,110 @@ footer .links {
 }
 
 
+/* Mint */
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+#mint-container{
+   max-width: 80%;
+   background: #F8FFFF;
+    border: 4px solid #3F1050;
+    box-shadow: -1px 5px 0px #3F1050, -1px 0px 0px #3F1050, 0px 5px 0px #3F1050;
+    border-radius: 24px;
+    padding: 1em 0em 2em 0em;
+}
+
+.mint-section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mint-section div {
+    padding : 0em 1em;
+    padding-top: 1em;
+    width: 100%;
+}
+
+.mint-section div * {
+    margin-bottom: 1.5em;
+}
+
+.mint-section label{
+    display: block;
+    font-family: 'steamed-regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 18px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.mint-section img {
+    max-width: 80%;
+    margin: auto;
+}
+
+.mint-header {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.mint-header btn {
+    align-self: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: -10px;
+}
+
+.mint-header h3 {
+    margin: 0.8em 0em;
+    font-size: 32px;
+    align-self: center;
+    padding: 0em 1em;
+}
+
+.wallet-display {
+    background: #3F1050;
+    border-radius: 8px;
+    padding : 1em;
+    color: white;
+    display: block;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.mint-bar{
+    background: #5E1978;
+    border: 2px solid #3F1050;
+    height: 1.8em;
+    box-sizing: border-box;
+    box-shadow: -3.80848px 3.23968px 0px #3F1050;
+    border-radius: 32px;
+    padding:0em !important;
+}
+
+#minted {
+    display: inline-block;
+    background: linear-gradient(90deg, #9BFFFF 0%, #9D29C8 100%);
+    border: 2px solid #3F1050;
+    box-sizing: border-box;
+    border-radius: 32px;
+    width: 80%;
+    padding-left: 1em;
+    font-weight: 700;
+}
+
 @media (min-width: 1600px) { 
     .team-list{
         justify-content: center;
@@ -532,7 +635,24 @@ footer .links {
         padding:0.5em 4em;
     }
 
-    footer{
+    #mint-container{
+         padding: 1em 0em 2em 2em;
+     }
+
+    .mint-section div {
+        padding : 0em 2em;
+        width: 515px;
+    }
+
+    .mint-header {
+        justify-content: left;
+    }
+
+    .mint-header h3 {
+        font-size: 48px;
+    }
+
+    footer {
         font-size: 1em;
     }
 }
