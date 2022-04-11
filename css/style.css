@@ -30,8 +30,8 @@ h2{
     color:#3F1050;
     font-style: normal;
     font-weight: 400;
-    font-size: 120px;
-    line-height: 120px;
+    font-size: 60px;
+    line-height: 60px;
     text-align: left;
     margin-bottom: 0px;
 }
@@ -39,14 +39,10 @@ h2{
 .header{
     display: flex;
     justify-content: space-between;
-
-    /* Top Nav */
     position: absolute;
     height: 120px;
     top: 0px;
     width: 100%;
-
-    /* Fade */
     background: linear-gradient(180deg, #16152B 50.3%, rgba(22, 21, 43, 0) 99.79%);
 }
 
@@ -56,7 +52,7 @@ h2{
 }
 
 #logo img{
-    width: 230px;
+    width: 200px;
     padding: 1em;
     padding-bottom: 2px;
 }
@@ -78,7 +74,7 @@ nav a{
 #top{
     background-image: url(/img/hero_bg.png);
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     height: 100vh;
 }
 
@@ -87,21 +83,26 @@ nav a{
     justify-content: center;
     display: flex;
     height: 100vh;
+    flex-wrap: wrap;
+}
+
+.hero div, .hero div h3{
+    text-align: right;
 }
 
 .hero img {
-    width: 600px;
-    padding: 4em;
+    width: 260px;
+    margin-top: 6em;
 }
 
 .tagline {
     font-family: 'steamed-regular';
     font-style: normal;
     font-weight: 400;
-    font-size: 48px;
+    font-size: 32px;
     line-height: 60px;
     color: #F8FFFF;
-    text-align: left;
+    margin-top:-4em;
 }
 
 #faq {
@@ -170,16 +171,18 @@ nav a{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 2em;
 }
 
 .community-post {
     padding: 1em;
     margin: 2em 1em;
-    width: 434px;
+    max-width: 434px;
     background: #F8FFFF;
     border: 4px solid #3F1050;
     box-shadow: -1px 5px 0px #3F1050, -1px 0px 0px #3F1050, 0px 5px 0px #3F1050;
     border-radius: 24px;
+    margin-top: 0;
 }
 
 .community-member {
@@ -265,14 +268,6 @@ i{
     color:white;
 }
 
-.dark{
-    background-color: #6f6cb8;
-}
-
-.darkest{
-    background-color: #433f82;
-}
-
 .light{
     background-color: #06FFFE;
 }
@@ -281,8 +276,6 @@ i{
     background-color: #9d29c8;
 }
 
-
-
 .gradient {
     background: linear-gradient(170.71deg, #C2FFFB -5.26%, #C174F0 101.66%);
 }
@@ -290,6 +283,7 @@ i{
 footer{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     color: white;
     padding: 1em;
     font-size: 0.8em;
@@ -321,6 +315,10 @@ footer .links {
     color: #F8FFFF;
 }
 
+.header .links {
+    display: none;
+}
+
 @media (min-width: 1600px) { 
     .team-list{
         justify-content: center;
@@ -329,8 +327,33 @@ footer .links {
 
 
 @media (min-width: 720px) { 
+
+    h2 {
+        font-size: 120px;
+        line-height: 120px;
+    }
+    
     #logo img{
         width: 180px;
+    }
+
+    .header .links {
+        display: flex;
+    }
+
+    .hero img {
+        width: 600px;
+        padding: 4em;
+    }
+
+    .tagline {
+        font-size: 48px;
+        margin-top: 0em;
+        text-align: left;
+    }
+
+    .hero div , .hero div h3{
+        text-align: left;
     }
 
     nav{
