@@ -36,6 +36,8 @@ h2{
     margin-bottom: 0px;
 }
 
+/* header and nav */
+
 .header{
     display: flex;
     justify-content: space-between;
@@ -71,6 +73,8 @@ nav a{
     text-align: right;
 }
 
+/* Hero section */
+
 #top{
     background-image: url(/img/hero_bg.png);
     background-repeat: no-repeat;
@@ -104,6 +108,8 @@ nav a{
     color: #F8FFFF;
     margin-top:-4em;
 }
+
+/* FAQ section */
 
 #faq {
     background-image: url(/img/hero_lower_bg.png), linear-gradient(0deg, #5E1978 4.98%, rgba(170, 10, 207, 0.3) 76.96%, rgba(170, 10, 207, 0.3) 76.96%, #290833 143.86%, #7E21A0 143.87%);;
@@ -156,6 +162,8 @@ nav a{
     text-align: justify;
 }
 
+/* Community section @fixme columns don't wrap well in mobile, change to wrapped rows?*/
+
 #community {
     background: linear-gradient(180deg, #5E1978 24.36%, #05CCCB 100%);
     display: block;
@@ -203,6 +211,8 @@ nav a{
     font-size: 14px;
     line-height: 21px;
 }
+
+/* Team section  @fixme - add bg image to section*/
 
 #team h2 {
     text-align: center;
@@ -268,6 +278,8 @@ i{
     color:white;
 }
 
+/* common bgs */
+
 .light{
     background-color: #06FFFE;
 }
@@ -280,6 +292,8 @@ i{
     background: linear-gradient(170.71deg, #C2FFFB -5.26%, #C174F0 101.66%);
 }
 
+/* footer styles */
+
 footer{
     display: flex;
     justify-content: space-between;
@@ -288,6 +302,11 @@ footer{
     padding: 1em;
     font-size: 0.8em;
     background: linear-gradient(0deg, #16152B -23.56%, rgba(22, 21, 43, 0) 77.11%);
+}
+
+/* footer no bg on mint page */
+.purple footer {
+    background: none;
 }
 
 footer a {
@@ -318,6 +337,7 @@ footer .links {
 .header .links {
     display: none;
 }
+
 
 @media (min-width: 1600px) { 
     .team-list{
