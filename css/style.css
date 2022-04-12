@@ -21,6 +21,7 @@ html, body{
     background-image: url(/img/footer_bg.png);
     background-repeat: no-repeat;
     background-position: center bottom;
+    background-size: 100% auto;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -40,9 +41,10 @@ h2{
 }
 
 /* Fix for backgrounds */
-section *,
-header *,
-footer * {
+section, section *,
+header, header *,
+footer, footer * {
+    position: relative;
     z-index: 2;
 }
 
@@ -142,7 +144,9 @@ img.hero-bg {
 /* FAQ section */
 
 #faq {
-    background-image: url(/img/hero_lower_bg.png), linear-gradient(0deg, #5E1978 4.98%, rgba(170, 10, 207, 0.3) 76.96%, rgba(170, 10, 207, 0.3) 76.96%, #290833 143.86%, #7E21A0 143.87%);;
+    background-image: url(/img/hero_lower_bg.png),
+        linear-gradient(0deg, #5E1978 4.98%, rgba(170, 10, 207, 0.3) 68.39%, rgba(165, 10, 201, 0.32684) 71.28%, #290833 143.86%, #06FFFE 143.87%),
+        linear-gradient(0deg, #5E1978, #5E1978);
     background-size: contain;
     background-repeat: no-repeat;
 }
