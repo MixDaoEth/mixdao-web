@@ -18,6 +18,10 @@ html, body{
     font-size: 20px;
     line-height: 30px;
     color: #3F1050;
+
+    background-image: url(/img/hero_bg.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -41,9 +45,6 @@ h2{
 .header{
     display: flex;
     justify-content: space-between;
-    position: absolute;
-    height: 120px;
-    top: 0px;
     width: 100%;
     background: linear-gradient(180deg, #16152B 50.3%, rgba(22, 21, 43, 0) 99.79%);
 }
@@ -60,8 +61,7 @@ h2{
 }
 
 nav {
-    display: flex;
-    flex-direction: column;
+    display: none;
 }
 
 nav a{
@@ -69,17 +69,23 @@ nav a{
     text-decoration: none;
     font-weight: 700;
     color: #F8FFFF;
-    padding:0.5em;
+    padding: 0.5em;
+    margin: 1em;
     text-align: right;
 }
 
-/* Hero section */
-
-#top{
-    background-image: url(/img/hero_bg.png);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+@media (min-width: 1200px) {
+    nav{
+        display: block;
+        align-self: center;
+    }
 }
+
+.header .links {
+    display: flex;
+}
+
+/* Hero section */
 
 .hero {
     align-items: center;
@@ -92,33 +98,31 @@ nav a{
 }
 
 .hero img {
-    width: 400px;
-    max-width: 25vw;
-    padding: 4em;
+    max-width: 40vw;
     margin: auto;
-}
-
-@media (min-width: 720px) { 
-    .hero img {
-    max-width: 50vw;
-    width: 600px;
-    }
 }
 
 .tagline {
     font-family: 'steamed-regular';
     font-style: normal;
     font-weight: 400;
-    font-size: 32px;
-    line-height: 60px;
+    font-size: 20px;
+    line-height: 30px;
     color: #F8FFFF;
     margin-top: -4em;
+}
+
+@media (min-width: 720px) { 
+    .tagline {
+        font-size: 32px;
+        line-height: 60px;
+        text-align: left;
+    }
 }
 
 @media (min-width: 1200px) { 
     .tagline {
         font-size: 48px;
-        text-align: left;
     }
 }
 
@@ -347,10 +351,6 @@ footer .links {
     color: #F8FFFF;
 }
 
-.header .links {
-    display: none;
-}
-
 
 @media (min-width: 1600px) { 
     .team-list{
@@ -370,19 +370,6 @@ footer .links {
         width: 180px;
     }
 
-    .header .links {
-        display: flex;
-    }
-
-    nav{
-        display: block;
-        align-self: center;
-    }
-    
-    nav a{
-        margin:1em;
-    }
-    
     .textbox{
         padding:0.5em 4em;
     }
