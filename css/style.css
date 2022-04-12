@@ -78,25 +78,31 @@ nav a{
 #top{
     background-image: url(/img/hero_bg.png);
     background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
+    background-size: 100% 100%;
 }
 
 .hero {
     align-items: center;
-    justify-content: center;
-    display: flex;
-    height: 100vh;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
-.hero div, .hero div h3{
-    text-align: right;
+.hero div, .hero div h3 {
+    text-align: left;
 }
 
 .hero img {
-    width: 260px;
-    margin-top: 6em;
+    width: 400px;
+    max-width: 25vw;
+    padding: 4em;
+    margin: auto;
+}
+
+@media (min-width: 720px) { 
+    .hero img {
+    max-width: 50vw;
+    width: 600px;
+    }
 }
 
 .tagline {
@@ -106,7 +112,14 @@ nav a{
     font-size: 32px;
     line-height: 60px;
     color: #F8FFFF;
-    margin-top:-4em;
+    margin-top: -4em;
+}
+
+@media (min-width: 1200px) { 
+    .tagline {
+        font-size: 48px;
+        text-align: left;
+    }
 }
 
 /* FAQ section */
@@ -359,21 +372,6 @@ footer .links {
 
     .header .links {
         display: flex;
-    }
-
-    .hero img {
-        width: 600px;
-        padding: 4em;
-    }
-
-    .tagline {
-        font-size: 48px;
-        margin-top: 0em;
-        text-align: left;
-    }
-
-    .hero div , .hero div h3{
-        text-align: left;
     }
 
     nav{
