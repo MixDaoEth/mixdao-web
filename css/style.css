@@ -141,7 +141,7 @@ img.hero-bg {
 
 .hero img {
     max-width: 40vw;
-    margin: 0 auto;
+    margin: -100px auto;
     align-self: baseline;
 }
 
@@ -170,6 +170,13 @@ img.hero-bg {
 }
 
 /* Mission section */
+
+#mission img.left-bg {
+    width: 660px;
+    rotate: -90deg;
+    left: 0;
+    opacity: 0.6;
+}
 
 #mission img.right-bg {
     margin-top: -40vh;
