@@ -323,45 +323,41 @@ img.hero-bg {
     line-height: 21px;
 }
 
-/* Team section  @fixme - add bg image to section*/
+/* Team section */
 
-#team h2 {
-    text-align: center;
-}
-
-#team .team-list {
+.team-list {
     display: flex;
     flex-direction: column;
-    padding: 2em 10em;
 }
 
 @media (min-width: 1200px) {
     #team .team-list {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 50% 50%;
     }
 }
 
 .team-member {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 0.5em;
+    justify-content: space-between;
+    padding: 1em 0.5em;
 }
 
 .team-member h4 {
     color: #3F1050;
+    white-space: nowrap;
 }
 
 .team-member p {
     margin-bottom: 0;
     text-align: left;
     font-weight: 700;
+    font-size: 16px;
 }
 
 .team-member .content {
     padding: 1em;
-    min-width: 300px;
 }
 
 .team-member h4 {
@@ -384,8 +380,6 @@ img.hero-bg {
 .team-member a{
     color: #9D29C8;
     text-decoration: none;
-    font-size: 1.5em;
-    padding: 1em;
 }
 
 i{
