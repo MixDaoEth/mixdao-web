@@ -192,6 +192,10 @@ img.hero-bg {
     background-repeat: no-repeat;
 }
 
+#faq img.right-bg {
+    max-width: 40vw;
+}
+
 #faq hr {
     color: #3F1050;
 }
