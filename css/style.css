@@ -419,13 +419,18 @@ i{
 
 /* footer styles */
 
-footer{
-    display: flex;
+footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
     color: white;
+    text-transform: capitalize;
+    margin-top: 5em;
     padding: 1em;
     font-size: 0.8em;
+    font-weight: 700;
     background: linear-gradient(0deg, #16152B -23.56%, rgba(22, 21, 43, 0) 77.11%);
 }
 
