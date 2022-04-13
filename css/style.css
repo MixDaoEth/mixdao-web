@@ -251,27 +251,40 @@ img.hero-bg {
     margin: auto;
 }
 
-#community h2{
+#community h2 {
     margin-top: 0em;
     padding-top: 2em;
     margin-left: 1em;
     color: #06FFFE;
 }
 
-.community-container{
+#community img.left-bg {
+    left: 0;
+    margin-top: 25vh;
+}
+
+#community img.right-bg {
+    right: 0;
+    margin-top: 25vh;
+}
+
+.community-container {
     display: grid;
     grid-template-columns: 1fr;
     justify-content: center;
     margin-top: 2em;
+    padding: 0 4em;
+    position: relative;
+    z-index: 3;
 }
 
-@media (min-width: 720px) { 
+@media (min-width: 1200px) { 
     .community-container{
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (min-width: 1200px) { 
+@media (min-width: 1600px) { 
     .community-container{
         grid-template-columns: repeat(3, 1fr);
     }
@@ -283,8 +296,10 @@ img.hero-bg {
     align-items: center;
 }
 
-.community-container .column:nth-child(odd){
-    margin-top: 10vh;
+@media (min-width: 1200px) { 
+    .community-container .column:nth-child(odd){
+        margin-top: 10vh;
+    }
 }
 
 .community-post {
