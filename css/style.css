@@ -41,6 +41,10 @@ h2{
     letter-spacing: 0.16em;
 }
 
+span.small {
+    font-size: 0.8em;
+}
+
 /* Background items */
 
 img.left-bg {
@@ -452,6 +456,10 @@ footer {
     font-size: 0.8em;
     font-weight: 700;
     background: linear-gradient(0deg, #16152B -23.56%, rgba(22, 21, 43, 0) 77.11%);
+}
+
+footer *:nth-child(2) {
+    text-align: center;
 }
 
 /* footer no bg on mint page */
