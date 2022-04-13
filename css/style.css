@@ -173,7 +173,7 @@ img.hero-bg {
 
 #mission img.left-bg {
     width: 660px;
-    rotate: -90deg;
+    transform: rotate(-90deg);
     left: -10vw;
     opacity: 0.6;
 }
