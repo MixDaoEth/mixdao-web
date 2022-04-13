@@ -41,10 +41,31 @@ h2{
     letter-spacing: 0.16em;
 }
 
+/* Background items */
+
+img.left-bg {
+    position: absolute !important;
+    left: 5%;
+}
+
+img.center-bg {
+    position: absolute !important;
+    bottom: -10em;
+    left: 0;
+    width: 100%;
+}
+
+img.right-bg {
+    position: absolute !important;
+    right: 5%;
+}
+
 /* Fix for backgrounds */
-section, section *,
-header, header *,
-footer, footer * {
+.hero,
+.header, .header *,
+#mission, #mission *,
+footer, footer *,
+h2 {
     position: relative;
     z-index: 2;
 }
@@ -144,6 +165,12 @@ img.hero-bg {
     }
 }
 
+/* Mission section */
+
+#mission img.right-bg {
+    margin-top: -40vh;
+}
+
 /* FAQ section */
 
 #faq {
@@ -155,7 +182,7 @@ img.hero-bg {
 }
 
 #faq hr {
-    color: #3F1050
+    color: #3F1050;
 }
 
 #faq .textbox p {
@@ -165,6 +192,16 @@ img.hero-bg {
 #faq h3{
     text-align: left;
     margin-bottom: 0;
+}
+
+#faq .alignment-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+#faq .alignment-container .textbox {
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
 .container {
@@ -187,6 +224,8 @@ img.hero-bg {
 }
 
 .textbox {
+    position: relative;
+    z-index: 10;
     max-width: 38em;
     margin: 4em auto 0;
     padding:0.5em 1em;
@@ -251,12 +290,18 @@ img.hero-bg {
 .community-post {
     align-self: auto;
     padding: 1em;
-    margin: 2em 3em;
+    margin: 2em 1.5em;
     background: #F8FFFF;
     border: 4px solid #3F1050;
     box-shadow: -1px 5px 0px #3F1050, -1px 0px 0px #3F1050, 0px 5px 0px #3F1050;
     border-radius: 24px;
     margin-top: 0;
+}
+
+@media (min-width: 1200px) { 
+    .community-post {
+        margin: 2em 2.5em;
+    }
 }
 
 .community-member {
@@ -316,7 +361,7 @@ img.hero-bg {
 
 .team-member .content {
     padding: 1em;
-    width: 300px;
+    min-width: 300px;
 }
 
 .team-member h4 {
