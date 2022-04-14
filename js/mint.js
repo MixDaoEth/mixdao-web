@@ -111,29 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				(currentlyMinted / maxSupply) * 80 + 20 + '%'
 			mintBar.textContent = `${currentlyMinted} / ${maxSupply}`
 			show('minted-counter')
-			// total supply
-			if (currentlyMinted < maxSupply) {
-				document.getElementById('fcs-left').innerHTML = `${
-					maxSupply - currentlyMinted
-				} left`
-
-				// free supply
-				document.getElementById('free-left').innerHTML = `${
-					700 - freeClaimed
-				} / 700 left`
-				if (freeClaimed == 700) {
-					//disable because run out
-					document.getElementById('free-switch').setAttribute('disabled', '')
-				}
-
-				// update mint button with minting prices
-				updateMintButton()
-			} else {
-				// sold out
-				document.getElementById('soldout').classList.remove('hide')
-				document.getElementById('sale').classList.add('hide')
-			}
-
 			renderMessage('')
 		}
 	}
@@ -153,6 +130,18 @@ document.addEventListener('DOMContentLoaded', () => {
 			const msg = 'Could not get a wallet connection'
 			console.log(msg, err)
 			renderMessage(msg, 'error')
+		}
+	})
+
+	document.getElementById('proceed-btn').addEventListener('click', async () => {
+		hide('proceed-btn')
+		if (saleInfo[0].toNumber() == 0) {
+			// Paused
+			renderMessage('Not available yet. Come back soon.')
+			const bigText = document.getElementById('big-text')
+			bigText.textContent = "Paused"
+			show(bigText)
+
 		}
 	})
 
