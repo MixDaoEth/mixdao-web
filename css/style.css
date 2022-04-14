@@ -27,6 +27,10 @@ body {
     background-size: 100% auto;
 }
 
+button {
+    font-size: 20px;
+}
+
 body.purple {
     background-image: url("../img/geometric.svg");
     background-position: center center;
@@ -562,13 +566,10 @@ footer .links {
     flex-grow: 1;
 }
 
-.mint-content div,
-.mint-content p {
+.mint-content > div,
+.mint-content > p {
     width: 100%;
     box-sizing: border-box;
-}
-
-.mint-section > * * {
     margin-bottom: 1.5em;
 }
 
@@ -581,6 +582,7 @@ footer .links {
     line-height: 18px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
+    margin-bottom: 0.5em;
 }
 
 .mint-section img {
@@ -593,7 +595,7 @@ footer .links {
     justify-content: center;
 }
 
-.mint-header btn {
+.mint-header button {
     align-self: center;
     padding-top: 4px;
     padding-bottom: 4px;
@@ -601,10 +603,10 @@ footer .links {
 }
 
 .mint-header h2 {
-    margin: 0.8em 0em;
+    margin: 0;
     font-size: 32px;
     align-self: center;
-    padding: 0em 1em;
+    padding: 0em 0.5em;
 }
 
 .address-display {
@@ -619,6 +621,7 @@ footer .links {
     letter-spacing: 0.16em;
     text-transform: uppercase;
     box-sizing: border-box;
+    margin-bottom: 1em;
 }
 
 .mint-bar {
@@ -643,21 +646,33 @@ footer .links {
     white-space: nowrap;
 }
 
-#message {
+.message {
     font-size: 14px;
     line-height: 21px;
     text-transform: uppercase;
     margin-bottom: 2.5em;
 }
 
-#message.info {
+.message.info {
     color: #C47FDE;
 }
-#message.success {
+.message.success {
     color: #049998;
 }
-#message.error {
+.message.error {
     color: #EE62B6;
+}
+
+.mint-qty {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.mint-qty > * {
+    margin: 0 1em 0 0;
+}
+.mint-qty button {
+    padding: 10px 16px;
 }
 
 /* Media */

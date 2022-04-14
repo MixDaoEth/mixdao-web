@@ -19,9 +19,19 @@ document.addEventListener('DOMContentLoaded', () => {
 		})
 		.then((data) => (alphaAbi = data))
 
+	// Allowlist
+	let allowlist
+	let allowed
+	fetch('./js/allowlist.json')
+		.then((response) => {
+			return response.json()
+		})
+		.then((data) => (allowlist = data))
+
 	let alphaContract
 	let provider
 	let saleInfo
+	let qty = 1
 
 	const providerOptions = {
 		walletconnect: {
@@ -85,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				addr.length,
 			)}`
 			try {
-				const name = await provider.lookupAddress("0x455fef5aecaccd3a43a4bce2c303392e10f22c63")
+				const name = await provider.lookupAddress(addr)
 				console.log(name)
 				if (name) {
 					addrDisplay.textContent = name
@@ -97,16 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			alphaContract = new ethers.Contract(alphaAddr, alphaAbi, signer)
 
 			saleInfo = await alphaContract.saleInfo(addr)
-			if (saleInfo[0].toNumber() === 0) {
-				// Not active
-				renderMessage('Success! You may proceed to the allowlist mint.', 'success')
-				show('proceed-btn')
-			} else {
-				//FIXME
-				return
-			}
-			//FIXME
 
+			// Counter
 			let maxSupply = saleInfo[1].toNumber()
 			let currentlyMinted = saleInfo[2].toNumber()
 
@@ -115,6 +117,25 @@ document.addEventListener('DOMContentLoaded', () => {
 				(currentlyMinted / maxSupply) * 80 + 20 + '%'
 			mintBar.textContent = `${currentlyMinted} / ${maxSupply}`
 			show('minted-counter')
+
+			// Sale state
+			if (saleInfo[0].toNumber() === 0) {
+				// Not active
+				renderMessage('Success! You may proceed to the allowlist mint.', 'success')
+				show('proceed-btn')
+			} else if (saleInfo[0].toNumber() === 1) {
+				// Presale
+				allowed = allowlist.find(pair => pair[0] == addr.toLowerCase())
+				if (!allowed) {
+					//FIXME FWC not allow = come back for presale
+					renderMessage('Sorry, you are not on the allowlist. Please come back during public sale.', 'error')
+					return
+				}
+				// Allowed
+				renderMessage('Success! you may proceed to the allowlist mint.', 'success')
+				show('proceed-btn')
+			}
+
 			renderMessage('')
 		}
 	}
@@ -146,7 +167,33 @@ document.addEventListener('DOMContentLoaded', () => {
 			const bigText = document.getElementById('big-text')
 			bigText.textContent = "Paused"
 			show(bigText)
+		} else if (saleInfo[0].toNumber() == 1) {
+			// Presale
+			hide('connect-section')
+			show('mint-qty')
+			show('mint-amount')
+			show('mint-total')
+		}
+	})
 
+	const updatePrice = () => {
+		document.getElementById("qty").textContent = qty
+		const total = saleInfo[3].mul(qty)
+		document.getElementById("price-total").textContent = ethers.utils.formatEther(total)
+	}
+
+	document.getElementById('qty-down-btn').addEventListener('click', async () => {
+		if (qty > 1) {
+			qty--
+			updatePrice()
+		}
+	})
+
+	document.getElementById('qty-up-btn').addEventListener('click', async () => {
+		//FIXME Check limit
+		if (qty) {
+			qty++
+			updatePrice()
 		}
 	})
 
@@ -168,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				},
 			)
 
-			renderMessage('Waiting for confirmation...')
+			renderMessage('Waiting for confirmation...', 'info')
 			await tx.wait()
 
 			document.getElementById(
