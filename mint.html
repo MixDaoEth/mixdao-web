@@ -32,6 +32,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/brands.min.css" integrity="sha512-rQgMaFKZKIoTKfYInSVMH1dSM68mmPYshaohG8pK17b+guRbSiMl9dDbd3Sd96voXZeGerRIFFr2ewIiusEUgg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
+    
+    <script src="https://cdn.ethers.io/lib/ethers-5.0.umd.min.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/web3@1.2.11/dist/web3.min.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/web3modal@1.9.0/dist/index.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js" type="text/javascript"></script>
+    <script src="js/mint.js" type="text/javascript"></script>
 
 </head>
 
@@ -44,20 +50,30 @@
             </div>
             <div class="mint-section">
                 <img src="/img/mint_image.png"/>
-                <div>
-                    <label>
-                        Alpha Pass Minted
-                    </label>
-                    <div class="mint-bar">
-                        <span id="minted">1300/1500</span>
+                <div class="mint-content">
+                    <div id="minted-counter" hidden>
+                        <label>
+                            Alpha Pass Minted
+                        </label>
+                        <div class="mint-bar">
+                            <span id="minted">xxx/xxx</span>
+                        </div>
                     </div>
-                    <label>
-                        Connect your wallet
-                    </label>
-                    <span class="wallet-display">xxxxxx...xxxx</span>
-                    <btn class="btn">
-                        Connect your wallet
-                    </btn>
+                    <div id="connect-section">
+                        <label>
+                            Connect your wallet
+                        </label>
+                        <span id="address-display" class="address-display">xxxxxx...xxxx</span>
+                        <btn id="connect-btn" class="btn">
+                            Connect your wallet
+                        </btn>
+                    </div>
+                    <p id="message"></p>
+                    <div id="proceed-btn" hidden>
+                        <btn id="proceed-btn" class="btn padded">
+                            Proceed
+                        </btn>
+                    </div>
                 </div>
             </div>
         </section>

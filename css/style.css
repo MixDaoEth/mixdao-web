@@ -436,7 +436,7 @@ i{
     font-style: normal;
 }
 
-.btn{
+.btn {
     padding: 14px 18px;
     background: #9D29C8;
     border: 2px solid #3F1050;
@@ -445,6 +445,9 @@ i{
     cursor: pointer;
     font-family: 'steamed-regular';
     color:white;
+}
+.btn.padded {
+    padding: 1em 2.5em;
 }
 
 /* common bgs */
@@ -523,6 +526,7 @@ footer .links {
 }
 
 #mint-container {
+    width: 1440px;
     max-width: 80%;
     min-height: 80%;
     background: #F8FFFF;
@@ -533,23 +537,28 @@ footer .links {
     padding: 1em 0em 2em 0em;
 }
 
-.mint-section{
+.mint-section {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    align-items: start;
 }
 
-.mint-section div {
-    padding : 0em 1em;
-    padding-top: 1em;
+.mint-content {
+    padding : 1em 1em 0;
+    flex-grow: 1;
+}
+
+.mint-content div,
+.mint-content p {
     width: 100%;
+    box-sizing: border-box;
 }
 
-.mint-section div * {
+.mint-section > * * {
     margin-bottom: 1.5em;
 }
 
-.mint-section label{
+.mint-section label {
     display: block;
     font-family: 'steamed-regular';
     font-style: normal;
@@ -562,7 +571,6 @@ footer .links {
 
 .mint-section img {
     max-width: 80%;
-    margin: auto;
 }
 
 .mint-header {
@@ -585,7 +593,8 @@ footer .links {
     padding: 0em 1em;
 }
 
-.wallet-display {
+.address-display {
+    width: 100%;
     background: #3F1050;
     border-radius: 8px;
     padding : 1em;
@@ -595,9 +604,10 @@ footer .links {
     line-height: 28px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
+    box-sizing: border-box;
 }
 
-.mint-bar{
+.mint-bar {
     background: #5E1978;
     border: 2px solid #3F1050;
     height: 1.8em;
@@ -618,12 +628,24 @@ footer .links {
     font-weight: 700;
 }
 
-@media (min-width: 1600px) { 
-    .team-list{
-        justify-content: center;
-    }
+#message {
+    font-size: 14px;
+    line-height: 21px;
+    text-transform: uppercase;
+    margin-bottom: 5em;
 }
 
+#message.info {
+    color: #C47FDE;
+}
+#message.success {
+    color: #049998;
+}
+#message.error {
+    color: #EE62B6;
+}
+
+/* Media */
 
 @media (min-width: 720px) { 
 
@@ -643,11 +665,6 @@ footer .links {
     #mint-container{
          padding: 1em 0em 2em 2em;
      }
-
-    .mint-section div {
-        padding : 0em 2em;
-        width: 515px;
-    }
 
     .mint-header {
         justify-content: left;
