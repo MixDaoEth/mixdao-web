@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	let alphaContract
 	let provider
+	let saleInfo
 
 	const providerOptions = {
 		walletconnect: {
@@ -91,27 +92,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			alphaContract = new ethers.Contract(alphaAddr, alphaAbi, signer)
 
-			let saleInfo = await alphaContract.saleInfo(addr)
-			console.log(saleInfo)
+			saleInfo = await alphaContract.saleInfo(addr)
 			if (saleInfo[0].toNumber() === 0) {
 				// Not active
 				renderMessage('Success! You may proceed to the allowlist mint.', 'success')
 				show('proceed-btn')
-				document.getElementById('sale').classList.remove('hide')
 			} else {
 				//FIXME
 				return
 			}
 			//FIXME
 
-			let claim = await alphaContract.functions.saleClaims()
+			let maxSupply = saleInfo[1].toNumber()
+			let currentlyMinted = saleInfo[2].toNumber()
 
-			let maxSupply = claim[0][0].toNumber()
-			let currentlyMinted = claim[0][1].toNumber()
-			let freeClaimed = claim[0][3].toNumber()
-
-			document.getElementById('meterspan').style.width =
-				(currentlyMinted / maxSupply) * 100 + '%'
+			const mintBar = document.getElementById('minted');
+			mintBar.style.width =
+				(currentlyMinted / maxSupply) * 80 + 20 + '%'
+			mintBar.textContent = `${currentlyMinted} / ${maxSupply}`
+			show('minted-counter')
 			// total supply
 			if (currentlyMinted < maxSupply) {
 				document.getElementById('fcs-left').innerHTML = `${
