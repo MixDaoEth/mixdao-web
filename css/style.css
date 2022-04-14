@@ -28,7 +28,10 @@ body {
 }
 
 body.purple {
-    background-image: none;
+    background-image: url("../img/geometric.svg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -532,6 +535,8 @@ footer .links {
     justify-content: center;
     align-items: center;
     min-height: 80vh;
+    position: relative;
+    z-index: 1;
 }
 
 #mint-container {
