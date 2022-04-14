@@ -53,10 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	// Update message
-	let renderMessage = (message, type) => {
+	const renderMessage = (message, type) => {
 		let el = document.getElementById('message')
 		el.classList = type // info, success, error
 		el.textContent = message
+	}
+
+	const sectionTitle = title => {
+		document.getElementById('section-title').textContent = title
 	}
 
 	const updateNetwork = async (network) => {
@@ -135,9 +139,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	document.getElementById('proceed-btn').addEventListener('click', async () => {
 		hide('proceed-btn')
+		sectionTitle('Get Alpha Pass')
 		if (saleInfo[0].toNumber() == 0) {
 			// Paused
-			renderMessage('Not available yet. Come back soon.')
+			renderMessage('Not available yet. Come back soon.', 'info')
 			const bigText = document.getElementById('big-text')
 			bigText.textContent = "Paused"
 			show(bigText)
