@@ -121,8 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			saleInfo = await alphaContract.saleInfo(addr)
 
-			maxAllowed = 3 - saleInfo[4].toNumber()
-
 			// Counter
 			let maxSupply = saleInfo[1].toNumber()
 			let currentlyMinted = saleInfo[2].toNumber()
@@ -178,6 +176,11 @@ document.addEventListener('DOMContentLoaded', () => {
 				show('proceed-btn')
 			} else {
 				// Public
+				maxAllowed = saleInfo[5].toNumber() - saleInfo[6].toNumber()
+				if (maxAllowed <= 0) {
+					renderMessage('Sorry, you have claimed your allowance for the public sale. Tell a friend!', 'error')
+					return
+				}
 				renderMessage('Success! you may proceed to the public mint.', 'success')
 				show('proceed-btn')
 			}
@@ -262,7 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	})
 	document.getElementById('qty-up-btn').addEventListener('click', async () => {
-		//FIXME Check limit
 		qty++
 		if (qty >= maxAllowed) {
 			qty = maxAllowed
@@ -304,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		sectionTitle('alpha pass is being minted')
 		try {
 			let tx
-			if (allowed) {
+			if (saleInfo[0].toNumber() === 1) {
 				//Presale
 				tx = await alphaContract.mintPresale(
 					qty,
