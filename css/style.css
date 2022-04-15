@@ -164,14 +164,21 @@ img.hero-bg {
     min-height: 100vh;
 }
 
-.hero div, .hero div h3 {
-    text-align: left;
-}
-
 .hero img {
     max-width: 40vw;
     margin: -100px auto;
     align-self: baseline;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero-content a {
+    margin-top: 1em;
+    text-decoration: none;
 }
 
 .tagline {
