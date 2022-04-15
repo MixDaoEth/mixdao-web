@@ -200,19 +200,24 @@ document.addEventListener('DOMContentLoaded', () => {
 	})
 
 	document.getElementById('buy-btn').addEventListener('click', async () => {
-		hide('minted-counter')
-		hide('mint-qty')
-		hide('mint-amount')	
-		hide('mint-total')
-		hide('buy-btn')
-		show('legal-section')
-		show('legal-btn')
 		renderMessage('')
+		if (legalOk()) {
+			doMint()
+		} else {
+			hide('minted-counter')
+			hide('mint-qty')
+			hide('mint-amount')
+			hide('mint-total')
+			hide('buy-btn')
+			show('legal-section')
+			show('legal-btn')
+		}
 	})
 
 	// Legal
+	const legalOk = () => document.getElementById('legal1').checked && document.getElementById('legal2').checked
 	const onLegalClick = () => {
-		if (document.getElementById('legal1').checked && document.getElementById('legal2').checked) {
+		if (legalOk()) {
 			document.getElementById('legal-btn').removeAttribute('disabled')
 		} else {
 			document.getElementById('legal-btn').setAttribute('disabled', true)
@@ -221,83 +226,34 @@ document.addEventListener('DOMContentLoaded', () => {
 	document.getElementById('legal1').addEventListener('change', onLegalClick)
 	document.getElementById('legal2').addEventListener('change', onLegalClick)
 
-
-	let mintBtn = document.getElementById('mint-btn')
-	mintBtn.addEventListener('click', async () => {
-		mintBtn.setAttribute('disabled', '')
-
-		let quantityPaidFor = await getQuantity()
-		let quantityReceived = await getQuantityWithFree()
-		let freeClaim = document.getElementById('free-switch').checked
+	// Finally!!
+	const doMint = async () => {
 		try {
-			const tx = await alphaContract.functions.mint(
-				quantityReceived,
-				freeClaim,
+			const tx = await alphaContract.mintPublic(
+				qty,
 				{
-					value: (await alphaContract.functions.tokenPrice())[0].mul(
-						quantityPaidFor,
-					),
-				},
+					value: saleInfo[3].mul(qty)
+				}
 			)
 
-			renderMessage('Waiting for confirmation...', 'info')
+			renderMessage('please accept transaction in metamask.', 'info')
 			await tx.wait()
 
-			document.getElementById(
-				'success-message',
-			).innerText = `You just minted ${quantityReceived} Female Doodles Club tokens.`
-			document.getElementById('sale').classList.add('hide')
-			document.getElementById('minted').classList.remove('hide')
 			renderMessage('')
 		} catch (err) {
+			renderMessage('There was an error processing your transaction.', 'error')
 			console.log(err)
 		}
-	})
-
-	let quantityInput = document.getElementById('quantity')
-	quantityInput.addEventListener('change', async () => {
-		updateMintButton()
-	})
-
-	let freeSwitch = document.getElementById('free-switch')
-	freeSwitch.addEventListener('change', async () => {
-		updateMintButton()
-	})
-
-	let getQuantity = async () => {
-		return parseInt(document.getElementById('quantity').value)
 	}
+	document.getElementById('legal-btn').addEventListener('click', async () => {
+		show('minted-counter')
+		show('mint-qty')
+		show('mint-amount')
+		show('mint-total')
+		show('buy-btn')
+		hide('legal-section')
+		hide('legal-btn')
 
-	let getQuantityWithFree = async () => {
-		let quantity = await getQuantity()
-		let freeClaim = document.getElementById('free-switch').checked
-		if (freeClaim) {
-			quantity++
-		}
-		return quantity
-	}
-
-	let updateMintButton = async () => {
-		let priceInETH = await getTokenPrice()
-		let quantity = await getQuantity()
-		let quantityWithFree = await getQuantityWithFree()
-		const price =
-			priceInETH == 0 ? 'FREE' : `${(quantity * priceInETH).toFixed(2)} ETH`
-		mintBtn.innerHTML = `Mint ${quantityWithFree} for ${price}`
-	}
-
-	let tokenPrice
-
-	let getTokenPrice = async () => {
-		if (!tokenPrice) {
-			tokenPrice = await alphaContract.functions.tokenPrice()
-		}
-		let web3 = new Web3(provider)
-		return web3.utils.fromWei(tokenPrice[0].toString())
-	}
-
-	let mintNowBtn = document.getElementById('buy-btn')
-	mintNowBtn.addEventListener('click', () => {
-		document.getElementById('mint').scrollIntoView()
+		doMint()
 	})
 })
