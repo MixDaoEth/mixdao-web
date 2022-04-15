@@ -158,6 +158,10 @@ document.addEventListener('DOMContentLoaded', () => {
 				// Allowed
 				renderMessage('Success! you may proceed to the allowlist mint.', 'success')
 				show('proceed-btn')
+			} else {
+				// Public
+				renderMessage('Success! you may proceed to the public mint.', 'success')
+				show('proceed-btn')
 			}
 
 			renderMessage('')
@@ -191,8 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			const bigText = document.getElementById('big-text')
 			bigText.textContent = "Paused"
 			show(bigText)
-		} else if (saleInfo[0].toNumber() == 1) {
-			// Presale
+		} else {
+			// Sale
 			hide('connect-section')
 			show('mint-qty')
 			show('mint-amount')
