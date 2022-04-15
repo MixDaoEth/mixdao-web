@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 				allowed = allowlist.find(pair => pair[0] == addr.toLowerCase())
 				maxAllowed = allowed ? allowed[1] - saleInfo[4].toNumber() : 0
-				const fwcMint = saleInfo[3].toNumber() == 0
+				const fwcMint = saleInfo[3].eq(ethers.constants.Zero)
 				if (maxAllowed <= 0) {
 					// FWC not allow = come back for presale
 					if (fwcMint) {
