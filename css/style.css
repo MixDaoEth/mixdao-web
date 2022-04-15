@@ -251,8 +251,7 @@ img.hero-bg {
     justify-content: center;
 }
 #faq .alignment-container .textbox {
-    margin-left: 1em;
-    margin-right: 1em;
+    padding-top: 2em;
 }
 
 .container {
