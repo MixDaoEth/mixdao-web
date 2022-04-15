@@ -130,8 +130,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			mintBar.textContent = `${currentlyMinted} / ${maxSupply}`
 			show('minted-counter')
 
-			// Sale state
-			if (saleInfo[0].toNumber() === 0) {
+			if (currentlyMinted >= maxSupply) {
+				// Sold out
+				show('sold-out')
+				show('socials')
+				hide('connect-section')
+			} else if (saleInfo[0].toNumber() === 0) {
 				// Not active
 				renderMessage('Success! You may proceed to the allowlist mint.', 'success')
 				show('proceed-btn')
