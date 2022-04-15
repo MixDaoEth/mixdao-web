@@ -707,6 +707,13 @@ footer .links {
     margin: 0;
 }
 
+.socials a {
+    font-size: 1.5em;
+    padding: 0 0.5em;
+    text-decoration: none;
+    color: #9D29C8;
+}
+
 /* Media */
 
 @media (min-width: 720px) { 

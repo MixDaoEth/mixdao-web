@@ -17,16 +17,27 @@ document.addEventListener('DOMContentLoaded', () => {
 		.then((response) => {
 			return response.json()
 		})
-		.then((data) => (alphaAbi = data))
+		.then((data) => {alphaAbi = data})
 
 	// Allowlist
-	let allowlist
-	let allowed
+	let maxAllowed = 0
+	let allowlist, allowed, merkleTree, root, leaf
 	fetch('./js/allowlist.json')
 		.then((response) => {
 			return response.json()
 		})
-		.then((data) => (allowlist = data))
+		.then((data) => {
+			allowlist = data
+			const hashed = allowlist.map(e =>
+				ethers.utils.solidityPack(['uint256', 'uint256'], [e[0].toLowerCase(), e[1]])
+			)
+			merkleTree = new MerkleTree(hashed, keccak256, {
+				hashLeaves: true,
+				sortPairs: true,
+			})
+			root = merkleTree.getHexRoot()
+			console.log(`Presale root is: ${root}`)
+		})
 
 	let alphaContract
 	let provider
@@ -96,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			)}`
 			try {
 				const name = await provider.lookupAddress(addr)
-				console.log(name)
 				if (name) {
 					addrDisplay.textContent = name
 				}
@@ -107,6 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			alphaContract = new ethers.Contract(alphaAddr, alphaAbi, signer)
 
 			saleInfo = await alphaContract.saleInfo(addr)
+
+			maxAllowed = 3 - saleInfo[4].toNumber()
 
 			// Counter
 			let maxSupply = saleInfo[1].toNumber()
@@ -125,12 +137,24 @@ document.addEventListener('DOMContentLoaded', () => {
 				show('proceed-btn')
 			} else if (saleInfo[0].toNumber() === 1) {
 				// Presale
+				contractRoot = await alphaContract.merkleRoot()
+				if (root != contractRoot) {
+					// Cache issue
+					console.log(`Contract root: ${contractRoot}`)
+					renderMessage('Website outdated! Please clear your cache.', 'error')
+					return
+				}
 				allowed = allowlist.find(pair => pair[0] == addr.toLowerCase())
 				if (!allowed) {
 					//FIXME FWC not allow = come back for presale
 					renderMessage('Sorry, you are not on the allowlist. Please come back during public sale.', 'error')
 					return
 				}
+				maxAllowed = allowed[1] - saleInfo[4].toNumber()
+				leaf = keccak256(
+					ethers.utils.solidityPack(['uint256', 'uint256'], [addr, allowed[1]])
+				)
+				proof = merkleTree.getHexProof(leaf)
 				// Allowed
 				renderMessage('Success! you may proceed to the allowlist mint.', 'success')
 				show('proceed-btn')
@@ -174,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			show('mint-amount')
 			show('mint-total')
 			show('buy-btn')
-			renderMessage('AMOUNT MAX 1 PER TRANSACTION.', 'info')
+			renderMessage(`Allowed maximum of ${maxAllowed}.`, 'info')
 		}
 	})
 
@@ -193,10 +217,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	})
 	document.getElementById('qty-up-btn').addEventListener('click', async () => {
 		//FIXME Check limit
-		if (qty) {
-			qty++
-			updatePrice()
+		qty++
+		if (qty >= maxAllowed) {
+			qty = maxAllowed
 		}
+		updatePrice()
 	})
 
 	document.getElementById('buy-btn').addEventListener('click', async () => {
@@ -229,19 +254,45 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Finally!!
 	const doMint = async () => {
 		try {
-			const tx = await alphaContract.mintPublic(
-				qty,
-				{
-					value: saleInfo[3].mul(qty)
-				}
-			)
+			let tx
+			if (allowed) {
+				//Presale
+				tx = await alphaContract.mintPresale(
+					qty,
+					allowed[1],
+					proof,
+					{
+						value: saleInfo[3].mul(qty)
+					}
+				)
+			} else {
+				// Public
+				tx = await alphaContract.mintPublic(
+					qty,
+					{
+						value: saleInfo[3].mul(qty)
+					}
+				)
+			}
 
-			renderMessage('please accept transaction in metamask.', 'info')
+			renderMessage('Transaction processing.', 'info')
 			await tx.wait()
 
-			renderMessage('')
+			// Success
+			renderMessage('Transaction successful.', 'success')
+			show('socials')
+			hide('minted-counter')
+			hide('mint-qty')
+			hide('mint-amount')
+			hide('mint-total')
+			hide('buy-btn')
+
 		} catch (err) {
-			renderMessage('There was an error processing your transaction.', 'error')
+			if (err?.code === -32000 && err?.message?.indexOf("insufficient funds") > -1) {
+				renderMessage('Insufficient funds.', 'error')
+			} else {
+				renderMessage('There was an error processing your transaction.', 'error')
+			}
 			console.log(err)
 		}
 	}
