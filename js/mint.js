@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const WalletConnectProvider = window.WalletConnectProvider.default
 	const CONTRACTS = {
 		4: {
-			ALPHA: '0x7B50f0f22b35648ec1110974cb1991FBA25852fF', //FIXME
+			ALPHA: '0x5eFB979D2690009f5Cae28fF4Ffe45317Fa1AfE5',
 		},
 		1: {
 			ALPHA: '', //FIXME
