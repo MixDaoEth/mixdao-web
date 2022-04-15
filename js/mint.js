@@ -135,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				show('sold-out')
 				show('socials')
 				hide('connect-section')
+				show('disconnect-btn')
 			} else if (saleInfo[0].toNumber() === 0) {
 				// Not active
 				renderMessage('Success! You may proceed to the allowlist mint.', 'success')
@@ -174,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	let connectBtn = document.getElementById('connect-btn')
 	connectBtn.addEventListener('click', async () => {
-		connectBtn.classList.add('hidden')
+		hide(connectBtn)
 		await window.Web3Modal.removeLocal('walletconnect')
 		try {
 			provider = await web3Modal.connect()
@@ -183,11 +184,34 @@ document.addEventListener('DOMContentLoaded', () => {
 			renderMessage('Loading...', 'info')
 			provider.on('network', updateNetwork)
 		} catch (err) {
-			connectBtn.classList.remove('hidden')
+			show(connectBtn)
 			const msg = 'Could not get a wallet connection'
 			console.log(msg, err)
 			renderMessage(msg, 'error')
+			return
 		}
+		show('disconnect-btn')
+	})
+	document.getElementById('disconnect-btn').addEventListener('click', async () => {
+		await window.Web3Modal.removeLocal('walletconnect')
+		hide('minted-counter')
+		show('connect-section')
+		show('connect-btn')
+		hide('disconnect-btn')
+		hide('sold-out')
+		hide('mint-qty')
+		hide('waiting')
+		hide('mint-amount')
+		hide('mint-total')
+		hide('legal-section')
+		hide('proceed-btn')
+		hide('buy-btn')
+		hide('legal-btn')
+		hide('big-text')
+		hide('socials')
+		renderMessage('')
+		sectionTitle('Connect')
+		document.getElementById('address-display').textContent = "xxxxxx...xxxx"
 	})
 
 	document.getElementById('proceed-btn').addEventListener('click', async () => {
@@ -202,6 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		} else {
 			// Sale
 			hide('connect-section')
+			show('disconnect-btn')
 			show('mint-qty')
 			show('mint-amount')
 			show('mint-total')

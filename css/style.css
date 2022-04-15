@@ -68,6 +68,10 @@ span.small {
     font-size: 0.8em;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 /* Background items */
 
 img.left-bg {
@@ -715,6 +719,20 @@ footer .links {
     color: #9D29C8;
 }
 
+.disconnect {
+    float: right;
+    margin-top: -2em;
+    display: flex;
+    color: #9D29C8;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 28px;
+    text-transform: uppercase;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
 /* Media */
 
 @media (min-width: 720px) { 
@@ -733,7 +751,7 @@ footer .links {
     }
 
     #mint-container{
-         padding: 1em 0em 2em 2em;
+         padding: 1em 2em 2em;
      }
 
     .mint-header {
