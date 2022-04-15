@@ -240,6 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			hide('buy-btn')
 			show('legal-section')
 			show('legal-btn')
+			sectionTitle('Order confirmation')
 		}
 	})
 
@@ -257,6 +258,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Finally!!
 	const doMint = async () => {
+		show('waiting')
+		sectionTitle('alpha pass is being minted')
 		try {
 			let tx
 			if (allowed) {
@@ -283,7 +286,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			await tx.wait()
 
 			// Success
+			sectionTitle('Welcome to the club')
 			renderMessage('Transaction successful.', 'success')
+			hide('waiting')
 			show('socials')
 			hide('minted-counter')
 			hide('mint-qty')
@@ -298,14 +303,16 @@ document.addEventListener('DOMContentLoaded', () => {
 				renderMessage('There was an error processing your transaction.', 'error')
 			}
 			console.log(err)
+			sectionTitle('Get Alpha Pass')
+			hide('waiting')
+			show('minted-counter')
+			show('mint-qty')
+			show('mint-amount')
+			show('mint-total')
+			show('buy-btn')
 		}
 	}
 	document.getElementById('legal-btn').addEventListener('click', async () => {
-		show('minted-counter')
-		show('mint-qty')
-		show('mint-amount')
-		show('mint-total')
-		show('buy-btn')
 		hide('legal-section')
 		hide('legal-btn')
 

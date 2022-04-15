@@ -656,6 +656,7 @@ footer .links {
 .message {
     font-size: 14px;
     line-height: 21px;
+    font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 2.5em;
 }
