@@ -215,7 +215,7 @@ img.hero-bg {
     background-image: url(/img/hero_lower_bg.png),
         linear-gradient(0deg, #5E1978 4.98%, rgba(170, 10, 207, 0.3) 68.39%, rgba(165, 10, 201, 0.32684) 71.28%, #290833 143.86%, #06FFFE 143.87%),
         linear-gradient(0deg, #5E1978, #5E1978);
-    background-size: contain;
+    background-size: inherit;
     background-repeat: no-repeat;
 }
 
