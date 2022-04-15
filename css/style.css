@@ -500,7 +500,7 @@ footer {
     align-items: center;
     flex-wrap: wrap;
     color: white;
-    text-transform: capitalize;
+    text-transform: uppercase;
     margin-top: 5em;
     padding: 1em;
     font-size: 0.8em;
