@@ -465,6 +465,13 @@ i{
 .btn.padded {
     padding: 1em 2.5em;
 }
+.btn:disabled {
+    background: #E2E1F7;
+    border: none;
+    box-shadow: none;
+    color: #C6C3EF;
+    cursor: not-allowed;
+}
 
 /* common bgs */
 
@@ -673,6 +680,31 @@ footer .links {
 }
 .mint-qty button {
     padding: 10px 16px;
+}
+
+.disclaimer-prompt {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0em;
+}
+
+.legal-cb {
+    display: flex;
+    max-width: 100%;
+    align-items: center;
+}
+.legal-cb input {
+    margin: 0 1em 0 0;
+}
+.legal-cb label {
+    font-family: 'Baloo Chettan 2', cursive;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-transform: none;
+    margin: 0;
 }
 
 /* Media */

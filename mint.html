@@ -81,8 +81,8 @@
                                 +
                             </button>
                         </div>
-                        <p class="message info">AMOUNT MAX 1 PER TRANSACTION.</p>
                     </div>
+                    <p id="message" class="message"></p>
                     <div id="mint-amount" hidden>
                         <label>
                             Alpha Pass Price
@@ -95,12 +95,29 @@
                         </label>
                         <h3><span id="price-total">0.08</span><img src="img/eth.svg"></h3>
                     </div>
-                    <p id="message" class="message"></p>
-                    <div id="proceed-btn" hidden>
-                        <button id="proceed-btn" class="btn padded">
-                            Proceed
-                        </button>
+                    <div id="legal-section" hidden>
+                        <label>
+                            Disclaimer
+                        </label>
+                        <span class="disclaimer-prompt">We're almost there! Please review our Terms of Use.</span>
+                        <div class="legal-cb">
+                            <input type="checkbox" id="legal1" name="legal1">
+                            <label for="legal1">I agree to the platform <a href="/termsofuse.html" target="_blank">Terms of Use</a>.</label>
+                        </div>
+                        <div class="legal-cb">
+                            <input type="checkbox" id="legal2" name="legal2">
+                            <label for="legal2">I agree to the <a href="/privacypolicy.html" target="_blank">Privacy Policy</a>. (MixDAO does not store your private data).</label>
+                        </div>
                     </div>
+                    <button id="proceed-btn" class="btn padded" hidden>
+                        Proceed
+                    </button>
+                    <button id="buy-btn" class="btn padded" hidden>
+                        Buy Now
+                    </button>
+                    <button id="legal-btn" class="btn padded" disabled hidden>
+                        Proceed
+                    </button>
                     <h3 id="big-text" hidden>Paused</h3>
                 </div>
             </div>

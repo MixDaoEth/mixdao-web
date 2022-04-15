@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Update message
 	const renderMessage = (message, type) => {
 		let el = document.getElementById('message')
-		el.classList = type // info, success, error
+		el.classList = "message " + type // info, success, error
 		el.textContent = message
 	}
 
@@ -173,6 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			show('mint-qty')
 			show('mint-amount')
 			show('mint-total')
+			show('buy-btn')
+			renderMessage('AMOUNT MAX 1 PER TRANSACTION.', 'info')
 		}
 	})
 
@@ -182,13 +184,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		document.getElementById("price-total").textContent = ethers.utils.formatEther(total)
 	}
 
+	// Quantity
 	document.getElementById('qty-down-btn').addEventListener('click', async () => {
 		if (qty > 1) {
 			qty--
 			updatePrice()
 		}
 	})
-
 	document.getElementById('qty-up-btn').addEventListener('click', async () => {
 		//FIXME Check limit
 		if (qty) {
@@ -196,6 +198,29 @@ document.addEventListener('DOMContentLoaded', () => {
 			updatePrice()
 		}
 	})
+
+	document.getElementById('buy-btn').addEventListener('click', async () => {
+		hide('minted-counter')
+		hide('mint-qty')
+		hide('mint-amount')	
+		hide('mint-total')
+		hide('buy-btn')
+		show('legal-section')
+		show('legal-btn')
+		renderMessage('')
+	})
+
+	// Legal
+	const onLegalClick = () => {
+		if (document.getElementById('legal1').checked && document.getElementById('legal2').checked) {
+			document.getElementById('legal-btn').removeAttribute('disabled')
+		} else {
+			document.getElementById('legal-btn').setAttribute('disabled', true)
+		}
+	}
+	document.getElementById('legal1').addEventListener('change', onLegalClick)
+	document.getElementById('legal2').addEventListener('change', onLegalClick)
+
 
 	let mintBtn = document.getElementById('mint-btn')
 	mintBtn.addEventListener('click', async () => {
