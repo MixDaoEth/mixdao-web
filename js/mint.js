@@ -92,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			if (!alphaAddr) {
 				// Not available on this network
-				// show()
 				renderMessage('Not available on this network', 'error')
 				return
 			}
@@ -134,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			mintBar.textContent = `${currentlyMinted} / ${maxSupply}`
 			show('minted-counter')
 
+			renderMessage('')
 			if (currentlyMinted >= maxSupply) {
 				// Sold out
 				show('sold-out')
@@ -154,26 +154,33 @@ document.addEventListener('DOMContentLoaded', () => {
 					return
 				}
 				allowed = allowlist.find(pair => pair[0] == addr.toLowerCase())
-				if (!allowed) {
-					//FIXME FWC not allow = come back for presale
-					renderMessage('Sorry, you are not on the allowlist. Please come back during public sale.', 'error')
+				maxAllowed = allowed ? allowed[1] - saleInfo[4].toNumber() : 0
+				const fwcMint = saleInfo[3].toNumber() == 0
+				if (maxAllowed <= 0) {
+					// FWC not allow = come back for presale
+					if (fwcMint) {
+						renderMessage('Sorry, you are not part of the Future Whales Club claim. Please come back during presale.', 'error')
+					} else {
+						renderMessage('Sorry, you are not on the allowlist. Please come back during public sale.', 'error')
+					}
 					return
 				}
-				maxAllowed = allowed[1] - saleInfo[4].toNumber()
 				leaf = keccak256(
 					ethers.utils.solidityPack(['uint256', 'uint256'], [addr, allowed[1]])
 				)
 				proof = merkleTree.getHexProof(leaf)
 				// Allowed
-				renderMessage('Success! you may proceed to the allowlist mint.', 'success')
+				if (fwcMint) {
+					renderMessage('Success! you may proceed to the Future Whales Club claim.', 'success')
+				} else {
+					renderMessage('Success! you may proceed to the allowlist mint.', 'success')
+				}
 				show('proceed-btn')
 			} else {
 				// Public
 				renderMessage('Success! you may proceed to the public mint.', 'success')
 				show('proceed-btn')
 			}
-
-			renderMessage('')
 		}
 	}
 
@@ -229,6 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			show(bigText)
 		} else {
 			// Sale
+			updatePrice()
 			hide('connect-section')
 			show('disconnect-btn')
 			show('mint-qty')
@@ -242,6 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const updatePrice = () => {
 		document.getElementById("qty").textContent = qty
 		const total = saleInfo[3].mul(qty)
+		document.getElementById("price-single").textContent = ethers.utils.formatEther(saleInfo[3])
 		document.getElementById("price-total").textContent = ethers.utils.formatEther(total)
 	}
 
