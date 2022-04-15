@@ -603,7 +603,7 @@ footer .links {
 .mint-header {
     display: flex;
     text-align: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .mint-header button {
@@ -620,7 +620,7 @@ footer .links {
     padding: 0em 0.5em;
 }
 
-.address-display {
+.mint-section .address-display {
     width: 100%;
     background: #3F1050;
     border-radius: 8px;
@@ -633,6 +633,11 @@ footer .links {
     text-transform: uppercase;
     box-sizing: border-box;
     margin-bottom: 1em;
+}
+
+.mint-header .address-display {
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .mint-bar {
@@ -753,10 +758,6 @@ footer .links {
     #mint-container{
          padding: 1em 2em 2em;
      }
-
-    .mint-header {
-        justify-content: left;
-    }
 
     .mint-header h3 {
         font-size: 48px;

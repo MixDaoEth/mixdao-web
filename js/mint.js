@@ -100,19 +100,23 @@ document.addEventListener('DOMContentLoaded', () => {
 			const addr = await signer.getAddress()
 
 			// Update address display
-			const addrDisplay = document.getElementById('address-display')
-			addrDisplay.textContent = `${addr.substring(0, 7)}...${addr.substring(
+			let addrDisplay = `${addr.substring(0, 7)}...${addr.substring(
 				addr.length - 4,
 				addr.length,
 			)}`
+			
 			try {
 				const name = await provider.lookupAddress(addr)
 				if (name) {
-					addrDisplay.textContent = name
+					addrDisplay = name
 				}
 			} catch (err) {
 				console.log(err)
 			}
+			document.getElementById('address-display').textContent = addrDisplay
+			const displayTop = document.getElementById('address-display-top')
+			displayTop.textContent = `Connected: ${addrDisplay}`
+			show(displayTop)
 
 			alphaContract = new ethers.Contract(alphaAddr, alphaAbi, signer)
 
