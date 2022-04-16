@@ -683,6 +683,7 @@ footer .links {
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 2.5em;
+    max-width: 30vw;
 }
 
 .message.info {
