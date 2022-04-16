@@ -421,8 +421,10 @@ img.hero-bg {
 
 .team-member {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     padding: 1em 0.5em;
+    text-align: center;
 }
 
 .team-member h4 {
@@ -452,6 +454,7 @@ img.hero-bg {
 .team-member img {
     max-width: 108px;
     max-height: 108px;
+    margin: auto;
 }
 
 .team-member h4{
@@ -777,5 +780,10 @@ footer .links {
 
     footer {
         font-size: 1em;
+    }
+
+    .team-member {
+        flex-wrap: nowrap;
+        text-align: left;
     }
 }
