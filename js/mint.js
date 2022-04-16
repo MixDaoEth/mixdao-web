@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			ALPHA: '0x5eFB979D2690009f5Cae28fF4Ffe45317Fa1AfE5',
 		},
 		1: {
-			ALPHA: '', //FIXME
+			ALPHA: '0xfc5fD585C8D725599086D35c4EE82B71230D6f14',
 		},
 	}
 
