@@ -800,7 +800,7 @@ footer .links {
     display: none;
 }
 
-.legal-cb input[type="checkbox"]:checked + label span{
+.legal-cb input[type="checkbox"]:checked + label span {
     border: 3px solid #9D29C8;
 }
 
@@ -859,6 +859,11 @@ footer .links {
     width: 10px;
     background: #9D29C8;
     transition: width 150ms ease 100ms;
+}
+
+.legal-cb label .spacer {
+    display: inline;
+    margin-right: calc(3em + 30px);
 }
 
 .socials a {
