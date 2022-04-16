@@ -115,6 +115,10 @@ header{
     z-index: 10;
 }
 
+.no-bg{
+    background: none;
+}
+
 #logo{
     display: flex;
     align-items: center;
