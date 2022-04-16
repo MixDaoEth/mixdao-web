@@ -599,7 +599,7 @@ i{
 
 footer {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
@@ -611,9 +611,19 @@ footer {
     font-weight: 700;
     background: linear-gradient(0deg, #16152B -23.56%, rgba(22, 21, 43, 0) 77.11%);
 }
+@media (min-width: 720px) {
+    footer {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 
-footer *:nth-child(2) {
+footer * {
     text-align: center;
+}
+@media (min-width: 720px) {
+    footer *:nth-child(1) {
+        text-align: left;
+    }
 }
 
 /* footer no bg on mint page */
