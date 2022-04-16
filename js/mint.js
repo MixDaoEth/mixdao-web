@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			await tx.wait()
 
 			// Success
-			sectionTitle('Welcome to the club')
+			sectionTitle('Welcome to the club!')
 			renderMessage('Transaction successful.', 'success')
 			hide('waiting')
 			show('socials')
