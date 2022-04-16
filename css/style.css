@@ -610,8 +610,9 @@ footer .links {
     margin-bottom: 0.5em;
 }
 
-.mint-section img {
+.mint-section video {
     max-width: 80%;
+    border-radius: 30px;
 }
 
 .mint-header {
